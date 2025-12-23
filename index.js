@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
-const { uploadDir } = require("./multerConfig");
 const uploadRoutes = require("./routes/imageAnalysisRouter");
+const ImageGenerator = require("./routes/createPhotoRouter");
+const ingredientsRouter = require("./routes/ingredientRecognitionRouter");
 
 const app = express();
 const PORT = process.env.PORT || 999;
@@ -10,9 +10,9 @@ const PORT = process.env.PORT || 999;
 app.use(cors());
 app.use(express.json());
 
-// app.use("/upload", express.static(uploadDir));
-app.use("/upload", express.static("uploads"));
-app.use("/", uploadRoutes);
+app.use("/analyze", uploadRoutes);
+app.use("/image", ImageGenerator);
+app.use("/recognition", ingredientsRouter);
 
 app.get("/", (req, res) => {
   res.send("Backend is running");

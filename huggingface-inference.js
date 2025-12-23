@@ -1,5 +1,5 @@
 const { InferenceClients } = require("huggingface/inference");
 
-const client = new InferenceClients("HF_TOKEN");
+const client = new InferenceClients(process.env.HF_TOKEN);
 
 module.exports = client;
